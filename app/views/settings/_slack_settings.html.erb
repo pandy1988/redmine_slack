@@ -1,0 +1,13 @@
+<p>
+  <%= content_tag :label, l(:label_incoming_webhook_url) %>
+  <%= text_field_tag 'settings[incoming_webhook_url]', @settings['incoming_webhook_url'], :size => 100 %>
+</p>
+<p>
+  <%= content_tag :label, l(:label_inform_projects) %>
+  <% for p in Project.all do %>
+    <label style="all: initial; font-size: 12px; display: block;">
+      <%= check_box_tag 'settings[inform_projects][]', p.id, (@settings['inform_projects'] || []).include?(p.id.to_s), :id => nil %>
+      <%= p.name %>
+    </label>
+  <% end %>
+</p>
